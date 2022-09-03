@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>UpdatePlayer</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <script src="{% static 'main/javascript.js' %}"></script>
+
+
+</head>
+
+<body>
+    <!-- navbar -->
+
+    <div class="b-example-divider"></div>
+
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+
+                    <span class="fs-4">SHOOTERS'</span>
+
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="{% url 'home' %}" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="{% url 'booking' %}" class="nav-link px-2 text-white">Booking</a></li>
+                    <li><a href="{% url 'price' %}" class="nav-link px-2 text-white">Pricing</a></li>
+                    <li><a href="{% url 'payment' %}" class="nav-link px-2 text-white">Payment</a></li>
+                    <li><a href="{% url 'player' %}" class="nav-link px-2 text-white">Player</a></li>
+                    <li><a href="{% url 'employee' %}" class="nav-link px-2 text-white">Employee</a></li>
+                    <li><a href="{% url 'match' %}" class="nav-link px-2 text-white">Match</a></li>
+                </ul>
+
+                
+                <form class="d-flex" role="search" method="get"  action="{% url 'search' %}">
+                    <input class="form-control me-2" type="search" placeholder="Search" id="query" name="query"  aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit" name="submit">Search</button>
+                </form>
+
+                <div class="text-end">
+                    <a href="/signin">
+                        <button type="button" class="btn btn-outline-light mx-2">signin</button>
+                        </a>
+    
+                        <a href="/signup">
+                        <button type="button"  class="btn btn-warning">Sign-up</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- navbar -->
+           <!-- alert -->
+           {% for message in messages %}
+           <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+             <strong>Message:</strong> {{ message }}.
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>
+           {% endfor %}
+           
+           <!-- alert -->
+
+    <div class="container">
+        <hr>
+        <h1 class="text-center">UpdatePlayer</h1>
+        <hr>
+        {% if views %}
+        <form method="POST" id="playerform" action="{% url 'updateplayer' views.id %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Teamname</label>
+                <input type="text" class="form-control" id="Teamname" name="teamname" value="{{ views.player_Teamname }}"  aria-describedby="emailHelp"
+                    required>
+                <span id="teamnameerror" class="text-danger font-weight-bold"></span>
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ views.address }}" aria-describedby="emailHelp"
+                    required>
+                <span id="addresserror" class="text-danger font-weight-bold"></span>
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Contactnumber</label>
+                <input type="number" class="form-control" id="Contactnumber" name="Contactnumber" value="{{ views.contactnumber }}" 
+                    aria-describedby="emailHelp" required>
+                <span id="contacterror" class="text-danger font-weight-bold"></span>
+
+            </div>
+
+
+            <button type="submit" name="submit" class="btn btn-primary">Update </button>
+        </form>
+        {% endif %}
+    </div>
+
+
+    <!-- footer -->
+
+    <div class="b-example-divider"></div>
+
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="{% url 'booking' %}" class="nav-link px-2 text-muted">Booking</a></li>
+                <li class="nav-item"><a href="{% url 'price' %}" class="nav-link px-2 text-muted">Pricing</a></li>
+                <li class="nav-item"><a href="{% url 'payment' %}" class="nav-link px-2 text-muted">payment</a></li>
+                <li class="nav-item"><a href="{% url 'player' %}" class="nav-link px-2 text-muted">Player</a></li>
+                <li class="nav-item"><a href="{% url 'employee' %}" class="nav-link px-2 text-muted">Employee</a></li>
+                <li class="nav-item"><a href="{% url 'match' %}" class="nav-link px-2 text-muted">Match</a></li>
+            </ul>
+            <p class="text-center text-muted">Futsal Management System @2022</p>
+        </footer>
+    </div>
+
+    <!-- footer -->
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title> PriceTag</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  <script src="{% static 'main/javascript.js' %}"></script>
+
+</head>
+
+<body>
+  <!-- navbar -->
+
+  <div class="b-example-divider"></div>
+
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap" />
+          </svg>
+
+          <span class="fs-4">KHOWPA</span>
+
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'home' %}" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="{% url 'booking' %}" class="nav-link px-2 text-white">Booking</a></li>
+          {% comment %} <li><a href="{% url 'price' %}" class="nav-link px-2 text-white">Pricing</a></li> {% endcomment %}
+          <li><a href="{% url 'payment' %}" class="nav-link px-2 text-white">Payment</a></li>
+          <li><a href="{% url 'player' %}" class="nav-link px-2 text-white">Player</a></li>
+          {% comment %} <li><a href="{% url 'employee' %}" class="nav-link px-2 text-white">Employee</a></li> {% endcomment %}
+          <li><a href="{% url 'match' %}" class="nav-link px-2 text-white">Match</a></li>
+        </ul>
+
+
+        <form class="d-flex" role="search" method="get" action="{% url 'search' %}">
+          <input class="form-control me-2" type="search" placeholder="Search" id="query" name="query"
+            aria-label="Search">
+          <button class="btn btn-outline-success" type="submit" name="submit">Search</button>
+        </form>
+
+        <div class="text-end">
+          <a href="/signin">
+            <button type="button" class="btn btn-outline-light mx-2">signin</button>
+          </a>
+
+          <a href="/signup">
+            <button type="button" class="btn btn-warning">Sign-up</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- navbar -->
+
+  <div class="container">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Pricing</h1>
+      <p class="fs-5 text-muted"> SHOOTERS' main business strategy is to deliver well-facilitated services to customers
+        at very reasonable price. It has managed
+        attractive packaged and discounts to regular customers too.</p>
+    </div>
+    </header>
+
+    <main>
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Sunday-Friday</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">RS.1000<small class="text-muted fw-light"></small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>10 Player included</li>
+                <li>Discount:RS.100</li>
+
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary ">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Saturday</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">RS.1200<small class="text-muted fw-light"></small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>10 Player included</li>
+                <li>Discount:RS.0</li>
+
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+              <h4 class="my-0 fw-normal">Public Holiday</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">RS.1500<small class="text-muted fw-light"></small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>10 Player included</li>
+                <li>Discount:RS.0</li>
+
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="display-6 text-center mb-4">Compare plans</h2>
+
+      <div class="table-responsive">
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th style="width: 34%;"></th>
+              <th style="width: 22%;">Sunday-Friday</th>
+              <th style="width: 22%;">Saturday</th>
+              <th style="width: 22%;">Public Holiday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="text-start">Discount</th>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.200</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.0</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.0</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Package</th>
+              <td></td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg> For 10 Player </td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>For 10 Player</td>
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+              <th scope="row" class="text-start">Regular</th>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.800</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.1000</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.1200</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Irregular</th>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.1000</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.1200</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>RS.1500</td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-start">Extra Facility</th>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>Parking</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>Parking</td>
+              <td><svg class="bi" width="24" height="24">
+                  <use xlink:href="#check" />
+                </svg>Parking</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+
+  </div>
+
+
+
+  <!-- footer -->
+
+
+  <div class="b-example-divider"></div>
+
+  <div class="container">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="{% url 'booking' %}" class="nav-link px-2 text-muted">Booking</a></li>
+        <li class="nav-item"><a href="{% url 'price' %}" class="nav-link px-2 text-muted">Pricing</a></li>
+        <li class="nav-item"><a href="{% url 'payment' %}" class="nav-link px-2 text-muted">payment</a></li>
+        <li class="nav-item"><a href="{% url 'player' %}" class="nav-link px-2 text-muted">Player</a></li>
+        <li class="nav-item"><a href="{% url 'employee' %}" class="nav-link px-2 text-muted">Employee</a></li>
+        <li class="nav-item"><a href="{% url 'match' %}" class="nav-link px-2 text-muted">Match</a></li>
+      </ul>
+      <p class="text-center text-muted">Futsal Management System @2022</p>
+    </footer>
+  </div>
+
+  <!-- footer -->
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<html>
+<head>
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+</head>
+<body>
+    
+    <h1>your payment amount is Rs:100</h1>
+
+
+    
+    <!-- Place this where you need payment button -->
+    <button id="payment-button">Pay with Khalti</button>
+    <!-- Place this where you need payment button -->
+    <!-- Paste this code anywhere in you body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        var config = {
+            // replace the publicKey with yours
+            "publicKey": "test_public_key_aa7955e9edf14a48902f9341591eecb2",
+            "productIdentity": "1234567890",
+            "productName": "Dragon",
+            "productUrl": "http://localhost:8000",
+            "paymentPreference": [
+                "KHALTI",
+                "EBANKING",
+                "MOBILE_BANKING",
+                "CONNECT_IPS",
+                "SCT",
+                ],
+            "eventHandler": {
+                onSuccess (payload) {
+                    // hit merchant api for initiating verfication
+                    axios.get("/khaltiverify/",{
+                        params:{
+                            "token":payload.token,
+                            "amount":payload.amount,
+                            "id":payload.id,
+
+                        
+                    }}).then(function(resp){
+                        console.log(resp.data)
+                    })
+                    console.log(payload);
+                },
+                onError (error) {
+                    console.log(error);
+                }, 
+                onClose () {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+        var btn = document.getElementById("payment-button");
+        btn.onclick = function () {
+            // minimum transaction amount must be 10, i.e 1000 in paisa.
+            checkout.show({amount: 1000});
+        }
+    </script>
+    <!-- Paste this code anywhere in you body tag -->
+
+</body>
+</html> 

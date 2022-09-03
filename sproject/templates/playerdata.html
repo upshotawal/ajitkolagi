@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PlayerData</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <script src="{% static 'main/javascript.js' %}"></script>
+
+</head>
+
+<body>
+    <!-- navbar -->
+
+    <div class="b-example-divider"></div>
+
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+
+                    <span class="fs-4">SHOOTERS'</span>
+
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="{% url 'home' %}" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="{% url 'booking' %}" class="nav-link px-2 text-white">Booking</a></li>
+                    <li><a href="{% url 'price' %}" class="nav-link px-2 text-white">Pricing</a></li>
+                    <li><a href="{% url 'schedule' %}" class="nav-link px-2 text-white">Schedule</a></li>
+                    <li><a href="{% url 'player' %}" class="nav-link px-2 text-white">Player</a></li>
+                    <li><a href="{% url 'employee' %}" class="nav-link px-2 text-white">Employee</a></li>
+                    <li><a href="{% url 'match' %}" class="nav-link px-2 text-white">Match</a></li>
+                </ul>
+
+
+                <form class="d-flex" role="search" method="get" action="{% url 'search' %}">
+                    <input class="form-control me-2" type="search" placeholder="Search" id="query" name="query"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit" name="submit">Search</button>
+                </form>
+                <div class="text-end">
+                    <a href="/signin">
+                        <button type="button" class="btn btn-outline-light mx-2">signin</button>
+                    </a>
+
+                    <a href="/signup">
+                        <button type="button" class="btn btn-warning">Sign-up</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- navbar -->
+    <!-- alert -->
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+
+    <!-- alert -->
+
+    <!-- datatable -->
+    <div class="container">
+        <h2 class="text-center">PLAYER</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm px-5">
+                <thead>
+
+
+                    <tr>
+                        <th scope="col">S.N</th>
+                        <th scope="col">name</th>
+                        <th scope="col">address</th>
+                        <th scope="col">Contactnumber</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for details in page_obj %}
+                    <tr>
+                        <td>{{details.id}}</td>
+                        <td>{{details.player_Teamname}}</td>
+                        <td>{{details.address}}</td>
+                        <td>{{details.contactnumber}}</td>
+                        <td>
+                            <a href="{% url 'editplayer' details.id %}" class="btn btn-warning btn-sm">
+                                Update
+                            </a>
+
+
+                            </form>
+                        </td>
+                        <td>
+                            <form method="POST" action="{% url 'playerdelete' details.id %}">
+                                {% csrf_token %}
+                                <input type="submit" name="delete" value="delete" class="btn btn-danger btn-sm">
+
+                            </form>
+
+                        </td>
+
+                        <td>
+                            <a href="{% url 'paymentplayer' details.id %}" class="btn btn-warning btn-sm">
+                                Payment
+                            </a>
+                        </td>
+
+
+
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- datatable -->
+        <!-- pagination -->
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        <!-- pagination -->
+        <!-- footer -->
+
+        <div class="b-example-divider"></div>
+
+        <div class="container">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-muted">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'booking' %}" class="nav-link px-2 text-muted">Booking</a></li>
+                    <li class="nav-item"><a href="{% url 'price' %}" class="nav-link px-2 text-muted">Pricing</a></li>
+                    <li class="nav-item"><a href="{% url 'payment' %}" class="nav-link px-2 text-muted">payment</a></li>
+                    <li class="nav-item"><a href="{% url 'player' %}" class="nav-link px-2 text-muted">Player</a></li>
+                    <li class="nav-item"><a href="{% url 'employee' %}" class="nav-link px-2 text-muted">Employee</a>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'match' %}" class="nav-link px-2 text-muted">Match</a></li>
+                </ul>
+                <p class="text-center text-muted">Futsal Management System @2022</p>
+            </footer>
+        </div>
+
+        <!-- footer -->
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+from  . import views
+from django.urls import path
+
+
+urlpatterns = [
+    path('signin/', views.signin, name="signin"),
+    path('signout/', views.signout, name="signout"),
+    path('signup/', views.signup, name="signup"),
+    path('',views.home, name="home"),  
+    path('booking/',views.booking, name="booking"),  
+    path('employee/',views.employee, name="employee"),
+    path('match/',views.match, name="match"),
+    path('payment/',views.payment, name="payment"),
+    path('player/',views.player, name="player"),
+    path('price/',views.price, name="price"),
+    path('Browse/',views.Browse, name="Browse"),
+    path('search/',views.Search, name="search"),
+    path('dashboard/',views.Dashboard, name="dashboard"),
+    path('bookingdata/',views.Bookingdata, name="bookingdata"),
+    path('employeedata/',views.Employeedata, name="employeedata"),
+    path('pricedata/',views.Pricedata, name="pricedata"),
+    path('paymentdata/',views.Paymentdata, name="paymentdata"),
+    path('playerdata/',views.Playerdata, name="playerdata"),
+    path('matchdata/',views.Matchdata, name="matchdata"),
+    path('csv/',views.Csv, name="csv"),
+    path('bookingdelete/<int:id>',views.BookingDelete, name="bookingdelete"),
+    path('employeedelete/<int:id>',views.EmployeeDelete, name="employeedelete"),
+    path('matchdelete/<int:id>',views.MatchDelete, name="matchdelete"),
+    path('playerdelete/<int:id>',views.PlayerDelete, name="playerdelete"),
+    path('pricedelete/<int:id>',views.PriceDelete, name="pricedelete"),
+    path('update/',views.Update, name="update"),
+    path('schedule/',views.Schedule, name="schedule"),
+    path('pricetag/',views.pricetag, name="pricetag"),
+    path('updatebooking/<int:id>',views.UpdateBooking, name="updatebooking"),
+    path('editbooking/<int:id>',views.EditBooking, name="editbooking"),
+    path('updateemployee/<int:id>',views.UpdateEmployee, name="updateemployee"),
+    path('editemployee/<int:id>',views.EditEmployee, name="editemployee"),
+    path('updatematch/<int:id>',views.UpdateMatch, name="updatematch"),
+    path('editmatch/<int:id>',views.EditMatch, name="editmatch"),
+    path('updateprice/<int:id>',views.UpdatePrice, name="updateprice"),
+    path('editprice/<int:id>',views.EditPrice, name="editprice"),
+    path('updateplayer/<int:id>',views.UpdatePlayer, name="updateplayer"),
+    path('editplayer/<int:id>',views.EditPlayer, name="editplayer"),
+    path('khaltirequest/',views.khaltirequest, name="khaltirequest"),
+    path('paymentplayer/<int:id>',views.paymentplayer, name="paymentplayer"),
+  
+
+]
